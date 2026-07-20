@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@theme {
+  /* ブランドパレット: ダーク基調 + 金アクセント(構成案 v3 準拠) */
+  --color-ink: #111217; /* 背景 */
+  --color-card: #1b1d24; /* カード面 */
+  --color-card-2: #22242e; /* カード面(明) */
+  --color-line: #2c2f3a; /* 罫線 */
+  --color-body: #e8e6e1; /* 本文(温白) */
+  --color-mute: #8b8e9a; /* 補助テキスト */
+  --color-gold: #c9a24a; /* アクセント(CTA・強調のみ) */
+  --color-gold-soft: #e3c37a;
+
+  --font-sans: "Noto Sans JP", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background-color: var(--color-ink);
+  color: var(--color-body);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: rgba(201, 162, 74, 0.35);
+}
+
+/* キーボードフォーカスの可視化(アクセシビリティ) */
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
