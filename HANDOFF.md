@@ -4,13 +4,16 @@
 
 ## 現在地(どこまで終わっているか)
 
+- 🚀 **公開済み: https://game-art-site.knaoki32.workers.dev**(2026-08-06、なおの承認を得てデプロイ)
+  - Version ID `fbbd6477-d5bf-486a-b787-d60c981faa41`、26ファイル配信
+  - 再デプロイは `npm run deploy` のみ。**公開は外部公開なので、そのつどなおの確認を取ること**
 - サイト初版実装済み(全11セクション、React + TypeScript + Tailwind v4 + Vite)
 - **公開先を GitHub Pages から Cloudflare Workers(static assets)に変更した**(2026-08-06)
   - `wrangler.jsonc` を新規作成(`assets.directory: ./dist`、`not_found_handling: single-page-application`)
   - `package.json` に `deploy` スクリプト(`npm run build && wrangler deploy`)と devDependency `wrangler@^4.119.0` を追加
   - GitHub Pages用の `.github/workflows/deploy.yml` は削除済み(`.github/` ごと消えている)
   - `npx wrangler whoami` で **knaoki32@gmail.com でログイン済み**を確認。アカウントID `f23cd271c33848612ddc84d12420b5ce`、トークンに `workers (write)` / `workers_scripts (write)` があるのでデプロイ可能
-  - `npx wrangler deploy --dry-run` は成功(dist/ の25ファイルを認識)。**本番デプロイはなおの確認待ちで未実行**
+  - 2026-08-06に本番デプロイ実行済み(上記URL)
 - 画像は全24スロット中**22スロットに実画像が入っている**(2026-08-06に `src/content/images.ts` をスクリプトで実測。以前の「25スロット中18」という記載は誤り)
   - Lovartプロジェクト: `projectId 4503bed717be4f89a10d6d62906f3cb1`
   - ⚠️ **チャット履歴は残らない**。2026-08-06に開いた時点で履歴は「新規チャット」のみで、以前のスレッド(と、そこにアップロードした `haruka_reference.jpg`)は消えていた。「同じスレッドを使えばキャラ文脈が引き継がれる」という前提はもう成立しない
@@ -33,10 +36,10 @@
 
 ## 次にやること(上から着手順)
 
-1. **Cloudflareへ本番デプロイ** — `npm run deploy`(URLは `https://game-art-site.<account>.workers.dev` になる見込み、未確認)。公開は外部公開にあたるので、実行前になおの確認を取ること。**公開を止めるブロッカーはもう無い**(フォームURLも画像も揃った)
-2. OGP画像を用意して `index.html` に `og:image` を追加(`public/images/media-ogp.webp` を流用できる可能性あり)。無くても公開はできるが、SNSで共有されたときの見栄えが悪い
+1. **問い合わせフォームにテスト送信して、実際に届くか確認する**。公開済みなので、ここが壊れていると取りこぼしが発生する
+2. OGP画像を用意して `index.html` に `og:image` を追加(`public/images/media-ogp.webp` を流用できる可能性あり)。SNSで共有されたときの見栄えに効く。**公開後に残っている一番大きな未了項目**
 3. 人手修正の前後比較2枠(`processBefore` / `processAfter`)の実素材をなおから受け取る。**残る唯一のプレースホルダー**
-4. (任意)問い合わせフォームが実際に届くか、公開後に自分でテスト送信して確認する
+4. (任意)独自ドメインを当てるかの判断。いまは `*.workers.dev` のサブドメイン
 
 ## 決定済みの事項(理由つき)
 
