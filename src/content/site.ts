@@ -6,8 +6,9 @@
 export const site = {
   brand: 'knao',
   brandTagline: 'Character Art Partner',
-  /** 問い合わせ用 Google フォーム URL(要差し替え) */
-  contactFormUrl: 'https://forms.gle/REPLACE_ME',
+  /** 問い合わせ用 Google フォーム URL */
+  contactFormUrl:
+    'https://docs.google.com/forms/d/e/1FAIpQLSd3JzhylqDMy-xuoaWoAag5SvcHwfgzZWwx4URyABMcfQJQdw/viewform',
   /** X (Twitter) プロフィール */
   xUrl: 'https://x.com/knaoki23',
   xHandle: '@knaoki23',

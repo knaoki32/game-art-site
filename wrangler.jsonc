@@ -1,0 +1,13 @@
+// Cloudflare Workers(static assets)デプロイ設定
+// デプロイ: npm run deploy(build して dist/ をアップロード)
+// 初回のみ `npx wrangler login` でCloudflareアカウントにログインすること
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "game-art-site",
+  "compatibility_date": "2026-08-06",
+  "assets": {
+    "directory": "./dist",
+    // 存在しないパスでもトップページを返す(1ページ構成のため)
+    "not_found_handling": "single-page-application"
+  }
+}

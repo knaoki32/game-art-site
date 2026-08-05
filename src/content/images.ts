@@ -9,7 +9,9 @@
  * alt は「同一キャラクターであること」が伝わる具体的な文にする(SEO・アクセシビリティ)。
  *
  * 現在の画像はポートフォリオ(portfolio/assets)由来。
- * Steamカプセル4枠と修正前/後の2枠は、該当する実素材ができるまでプレースホルダーのまま。
+ * Steamカプセル4枠は「ロゴなし・同一キャラクターのビジュアルのみ」で3規格をLovart生成済み
+ * (2026-08-06。仕様は lovart-generation-specs.md の13〜15番。heroCapsule はヘッダー用を流用)。
+ * 修正前/後の2枠だけが、実制作過程のペア素材ができるまでプレースホルダーのまま。
  */
 
 export interface ImageSlot {
@@ -50,7 +52,8 @@ export const images = {
     spec: '横長 4:3',
   },
   heroCapsule: {
-    alt: '同一キャラクターを使用したSteamカプセル画像',
+    src: 'images/media-capsule-header.webp',
+    alt: '同一キャラクターを使用したSteamヘッダーカプセル(460×215)。桜と街並みを望む展望台を背景に、制服姿を右に寄せ、左にロゴ用の余白を残した構図',
     label: 'Steamカプセル',
     spec: '460×215',
   },
@@ -133,17 +136,20 @@ export const images = {
 
   /* ── 4. Steam・SNS・動画への展開 ── */
   mediaCapsuleHeader: {
-    alt: 'Steamヘッダーカプセル(460×215)のモックアップ',
+    src: 'images/media-capsule-header.webp',
+    alt: 'Steamヘッダーカプセル(460×215)規格。桜と街並みを望む展望台を背景に、同一キャラクターの制服姿を右に寄せ、左にロゴ用の余白を残した構図',
     label: 'ヘッダーカプセル',
     spec: '460×215',
   },
   mediaCapsuleMain: {
-    alt: 'Steamメインカプセル(616×353)のモックアップ',
+    src: 'images/media-capsule-main.webp',
+    alt: 'Steamメインカプセル(616×353)規格。ヘッダーと同じキャラクター・同じ制服・同じ展望台で、桜と街並みを背景にした引きの構図',
     label: 'メインカプセル',
     spec: '616×353',
   },
   mediaCapsuleLibrary: {
-    alt: 'Steamライブラリ縦型カプセル(600×900)のモックアップ',
+    src: 'images/media-capsule-library.webp',
+    alt: 'Steamライブラリ縦型カプセル(600×900)規格。同じキャラクター・同じ制服・同じ展望台の全身を縦構図で収めたもの',
     label: 'ライブラリ縦型',
     spec: '600×900',
   },

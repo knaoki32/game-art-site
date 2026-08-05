@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
-// base: './' — GitHub Pages のサブパス(https://<user>.github.io/<repo>/)配下でも動く相対パス出力
+// base: './' — 配信パスに依存しない相対パス出力(Cloudflare Workers static assets でもそのまま動く)
 export default defineConfig({
   base: './',
   plugins: [react(), tailwindcss()],

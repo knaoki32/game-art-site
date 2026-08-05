@@ -2,7 +2,7 @@
 
 Steam・インディーゲーム会社向けの営業サイト。最重要ゴールは **Character Continuity & DLC Kit** の問い合わせ獲得。
 
-React + TypeScript + Tailwind CSS(v4)+ Vite。GitHub Pages 向け静的サイト。
+React + TypeScript + Tailwind CSS(v4)+ Vite。Cloudflare Workers(static assets)で公開する静的サイト。
 
 ## 開発
 
@@ -32,9 +32,13 @@ src/
 2. **問い合わせフォームURL** — `src/content/site.ts` の `contactFormUrl`(現在はプレースホルダー)
 3. **OGP画像** — `public/ogp.png` を置き、`index.html` に `og:image` を追加
 
-## GitHub Pages への公開
+## Cloudflare への公開
 
-リポジトリを GitHub に push し、Settings → Pages → Source を「GitHub Actions」にすると、
-`.github/workflows/deploy.yml` が main への push ごとに自動デプロイします。
+Cloudflare Workers の static assets として `dist/` を配信する(設定は `wrangler.jsonc`)。
 
-`vite.config.ts` の `base: './'` により、`https://<user>.github.io/<repo>/` のサブパス配下でも動作します。
+```bash
+npx wrangler login   # 初回のみ(ブラウザでCloudflareアカウントにログイン)
+npm run deploy       # build して https://game-art-site.<account>.workers.dev に公開
+```
+
+`vite.config.ts` の `base: './'` は相対パス出力のための設定で、Cloudflare 上でもそのまま動作します。

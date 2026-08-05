@@ -5,24 +5,31 @@ Steam・インディーゲーム会社向け営業サイトの完全なソース
 
 - 目的: **Character Continuity & DLC Kit** の問い合わせ獲得(ポートフォリオではなく営業サイト)
 - 提案の軸: 「AI画像制作サービス」ではなく、ゲーム会社向けの「キャラクター運用パートナー」
-- スタック: React 19 + TypeScript + Tailwind CSS v4 + Vite(GitHub Pages 向け静的サイト)
-- プロジェクト場所: `C:\Users\Admin\product\game-art-site`
+- スタック: React 19 + TypeScript + Tailwind CSS v4 + Vite(Cloudflare Workers static assets で公開する静的サイト)
+- プロジェクト場所: `C:\Users\Admin\Claude\game-art-site`
 - セクション順(営業ストーリー): 価値提案 → 109ページ証明 → 展開実例 → Steam/SNS/動画 → 商品 → 制作工程 → 比較(単発の画像制作 vs キャラクター運用) → 実績 → 料金 → FAQ・方針 → 問い合わせ
 - デザイン: ダーク基調(#111217)+金アクセント(#C9A24A)、作品画像が主役、UI最小限
 - 画像は全24スロットを `src/content/images.ts` で一元管理。`src` 未設定はプレースホルダー表示
 
-## 画像の現状(2026-07-20 更新)
+## 画像の現状(2026-07-20 更新 — Lovart生成完了)
 
-- 使用中の実画像: 基準画像(heroKey / expansionBase = haruka_reference)、漫画ページ比較3枚(P.7=manga_multi / P.39=manga_infographic / 終盤=manga_hakama)、表情比較(manga_angles)
-- **Lovartで再生成待ちの12枠**: heroExpressions / heroCostume / heroDlc / heroSns / heroVideo / proofCostumes / expansionDlcPack / expansionSeasonal / expansionNewChar / expansionEventCg / mediaOgp / mediaVideo — 生成仕様は `lovart-generation-specs.md` 参照(haruka_reference をキャラクター参照に、表示枠と同じ比率で生成)
-- 恒久プレースホルダー: Steamカプセル4枠、人手修正の前後比較2枠(実素材ができたら差し替え)
+- **24スロット中22スロットに実画像を配置済み**(2026-08-06時点。残りは `processBefore` / `processAfter` の2枠のみ)。Lovartで基準画像(haruka_reference)を参照して12枚を表示枠と同比率で生成し、WebP化済み。さらに2026-08-06にSteamカプセル3規格を追加生成
+- 漫画ページ比較: P.7(7.webp)/ P.39(39.webp)/ P.100(100.jpg)。表情比較=manga_angles.jpg。基準=haruka_reference.jpg(heroKey / expansionBase)
+- 生成画像のマスターPNGは `assets-original/` に保管(公開物はWebP)
+- Lovartプロジェクト: projectId 4503bed717be4f89a10d6d62906f3cb1(canvas: https://www.lovart.ai/canvas?projectId=4503bed717be4f89a10d6d62906f3cb1)。追加生成時は同スレッドを再利用するとキャラ文脈が引き継がれる
+- 残りプレースホルダーは**2枠のみ**: 人手修正の前後比較(実制作過程のペア素材が必要なため、AIでは作れない)
+- Steamカプセルの方針変更と生成(2026-08-06): 実タイトルロゴを待たず、**ロゴなし・同一キャラクターのビジュアルのみ**で3規格を生成済み
+  - `media-capsule-header.webp` 1840×864 / `media-capsule-main.webp` 1856×1072 / `media-capsule-library.webp` 1200×1808
+  - 3枚とも同じ制服・同じ塗りで、**桜と街並みを望む同じ展望台**が舞台。並べると同一キャラ・同一シーンだと一目で分かる
+  - 生成モデルは GPT Image 2。参照には既存の「衣装比較シート」を使用(元の `haruka_reference.jpg` は旧チャットスレッドごと消えていて Lovart 側に残っていなかったため)
+  - `heroCapsule` にはヘッダー用画像を流用。仕様と生成結果は `lovart-generation-specs.md` の13〜15番
 
 ## 残タスク(公開前)
 
-1. Lovartで12枚を再生成(`lovart-generation-specs.md` の指示書どおり)→ `public/images/` に保存 → `images.ts` に `src` 設定
-2. 問い合わせフォームURL — `src/content/site.ts` の `contactFormUrl`(現在 `https://forms.gle/REPLACE_ME`)
-3. OGP画像 — `public/ogp.png` を用意し `index.html` に `og:image` 追加
-4. GitHubへ push → Settings → Pages → Source を「GitHub Actions」に(deploy.yml 済み)
+1. ~~Steamカプセル3規格をLovartでロゴなし生成~~ → 2026-08-06完了。修正前後ペア2枠のみ実素材待ち
+2. ~~問い合わせフォームURL~~ → 2026-08-06に実フォーム(Googleフォーム)を設定済み
+3. OGP画像 — `public/images/media-ogp.webp` を `public/ogp.png` 系に流用し `index.html` に `og:image` 追加も可
+4. Cloudflareへ公開 — `npx wrangler login`(初回のみ)→ `npm run deploy`(設定は `wrangler.jsonc`。GitHub Pages用 deploy.yml は2026-08-06に削除済み)
 
 ## コピーライティングの規約(変更時も維持すること)
 
@@ -32,7 +39,7 @@ Steam・インディーゲーム会社向け営業サイトの完全なソース
 - 増やすキーワード: キャラクター一貫性 / 制作工程 / 長期運用 / Steam / DLC / LiveOps / 継続制作
 - 料金は参考価格を明示: DLC Kit 22万円〜 / Steam Kit 30万円〜 / LiveOps 月額24万円〜(変動する旨を併記)
 - ComfyUIは使用していないため記載しない。工程は「基準画像→プロンプト設計→参照生成→人手修正→保管」(実際の運用)
-- ページ番号は制作者確認済みのもののみ使用(P.7 / P.39。終盤のページ番号は未確認のため「終盤」表記)
+- ページ番号は制作者確認済みのもののみ使用(P.7 / P.39 / P.100)
 - トーン: ゲーム会社へ提案書を出すような落ち着いた文体
 
 ---
@@ -51,7 +58,8 @@ Steam・インディーゲーム会社向け営業サイトの完全なソース
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",
@@ -66,7 +74,8 @@ Steam・インディーゲーム会社向け営業サイトの完全なソース
     "@vitejs/plugin-react": "^6.0.3",
     "oxlint": "^1.71.0",
     "typescript": "~6.0.2",
-    "vite": "^8.1.1"
+    "vite": "^8.1.1",
+    "wrangler": "^4.119.0"
   }
 }
 ````
@@ -78,7 +87,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
-// base: './' — GitHub Pages のサブパス(https://<user>.github.io/<repo>/)配下でも動く相対パス出力
+// base: './' — 配信パスに依存しない相対パス出力(Cloudflare Workers static assets でもそのまま動く)
 export default defineConfig({
   base: './',
   plugins: [react(), tailwindcss()],
@@ -254,7 +263,8 @@ export const site = {
   brand: 'knao',
   brandTagline: 'Character Art Partner',
   /** 問い合わせ用 Google フォーム URL(要差し替え) */
-  contactFormUrl: 'https://forms.gle/REPLACE_ME',
+  contactFormUrl:
+    'https://docs.google.com/forms/d/e/1FAIpQLSd3JzhylqDMy-xuoaWoAag5SvcHwfgzZWwx4URyABMcfQJQdw/viewform',
   /** X (Twitter) プロフィール */
   xUrl: 'https://x.com/knaoki23',
   xHandle: '@knaoki23',
@@ -284,7 +294,9 @@ export const nav = [
  * alt は「同一キャラクターであること」が伝わる具体的な文にする(SEO・アクセシビリティ)。
  *
  * 現在の画像はポートフォリオ(portfolio/assets)由来。
- * Steamカプセル4枠と修正前/後の2枠は、該当する実素材ができるまでプレースホルダーのまま。
+ * Steamカプセル4枠は「ロゴなし・同一キャラクターのビジュアルのみ」で3規格をLovart生成済み
+ * (2026-08-06。仕様は lovart-generation-specs.md の13〜15番。heroCapsule はヘッダー用を流用)。
+ * 修正前/後の2枠だけが、実制作過程のペア素材ができるまでプレースホルダーのまま。
  */
 
 export interface ImageSlot {
@@ -307,53 +319,59 @@ export const images = {
     spec: '縦長 2:3 推奨',
   },
   heroExpressions: {
-    alt: '同一キャラクターの表情差分シート(複数の表情のバストアップ)',
+    src: 'images/hero-expressions.webp',
+    alt: '同一キャラクターの表情差分シート(通常・笑顔・驚き・怒り・照れ・悲しみの6表情)',
     label: '表情差分',
-    spec: '横長 4:3(Lovartで再生成予定)',
+    spec: '横長 4:3',
   },
   heroCostume: {
-    alt: '同一キャラクターの衣装差分(私服姿の立ち絵)',
+    src: 'images/hero-costume.webp',
+    alt: '同一キャラクターの衣装差分(私服パーカー姿の立ち絵)',
     label: '衣装差分',
-    spec: '横長 4:3(Lovartで再生成予定)',
+    spec: '横長 4:3',
   },
   heroDlc: {
-    alt: '同一キャラクターのDLC想定の特別衣装立ち絵',
+    src: 'images/hero-dlc.webp',
+    alt: '同一キャラクターのDLC想定の特別衣装(金刺繍の白と赤のドレス)',
     label: 'DLC衣装',
-    spec: '横長 4:3(Lovartで再生成予定)',
+    spec: '横長 4:3',
   },
   heroCapsule: {
-    alt: '同一キャラクターを使用したSteamカプセル画像',
+    src: 'images/media-capsule-header.webp',
+    alt: '同一キャラクターを使用したSteamヘッダーカプセル(460×215)。桜と街並みを望む展望台を背景に、制服姿を右に寄せ、左にロゴ用の余白を残した構図',
     label: 'Steamカプセル',
     spec: '460×215',
   },
   heroSns: {
-    alt: '同一キャラクターを使用したSNS告知画像',
+    src: 'images/hero-sns.webp',
+    alt: '同一キャラクターを使用したSNS告知風ビジュアル(夕方の街・コピー用余白つき)',
     label: 'SNS画像',
-    spec: '16:9(Lovartで再生成予定)',
+    spec: '16:9',
   },
   heroVideo: {
-    alt: '同一キャラクターの動画サムネイル',
+    src: 'images/hero-video.webp',
+    alt: '同一キャラクターの動画サムネイル(カメラに手を振るバストアップ)',
     label: '動画',
-    spec: '4:3(Lovartで再生成予定)',
+    spec: '4:3',
   },
 
   /* ── 2. 109ページの証明 ── */
   proofPageEarly: {
-    src: 'images/manga_multi.jpg',
-    alt: 'フルカラー漫画 P.7(グループワークの場面)。ヒロインの顔立ちと体型',
+    src: 'images/7.webp',
+    alt: 'フルカラー漫画 P.7(皿洗いの場面)。ヒロインの顔立ちと体型',
     label: 'P.7 の場面',
     spec: '縦長 3:4',
   },
   proofPageMid: {
-    src: 'images/manga_infographic.jpg',
-    alt: 'フルカラー漫画 P.39(モノクロ演出の場面)。同一ヒロインを別トーンで描いても顔立ちが同じ',
+    src: 'images/39.webp',
+    alt: 'フルカラー漫画 P.39(雪の日にスーツ姿で空を見上げる場面)。同一ヒロインの顔立ちが同じ',
     label: 'P.39 の場面',
     spec: '縦長 3:4',
   },
   proofPageLate: {
-    src: 'images/manga_hakama.jpg',
-    alt: 'フルカラー漫画・終盤の場面(袴姿)。同一ヒロインの顔立ち・体型・塗りが序盤と同じ',
-    label: '終盤の場面',
+    src: 'images/100.jpg',
+    alt: 'フルカラー漫画 P.100(卒業式・袴姿の場面)。同一ヒロインの顔立ち・体型・塗りが序盤と同じ',
+    label: 'P.100 の場面',
     spec: '縦長 3:4',
   },
   proofExpressions: {
@@ -363,9 +381,10 @@ export const images = {
     spec: '横長 16:7',
   },
   proofCostumes: {
-    alt: '同一キャラクターの衣装比較シート(複数の衣装を同じポーズで並べたもの)',
+    src: 'images/proof-costumes.webp',
+    alt: '同一キャラクターの衣装比較シート(制服・私服・浴衣・ドレスの4衣装を同じポーズで並べたもの)',
     label: '衣装比較シート',
-    spec: '横長 16:7(Lovartで再生成予定)',
+    spec: '横長 16:7',
   },
 
   /* ── 3. キャラクター展開実例 ── */
@@ -376,51 +395,60 @@ export const images = {
     spec: '縦長 2:3',
   },
   expansionDlcPack: {
-    alt: '同一キャラクターのDLC衣装パック(3衣装の立ち絵を横並びにしたシート)',
+    src: 'images/expansion-dlc-pack.webp',
+    alt: '同一キャラクターのDLC衣装パック(メイド服・騎士風衣装・魔法使いローブの3衣装立ち絵)',
     label: 'DLC衣装パック(3衣装)',
-    spec: '横長 4:3(Lovartで再生成予定)',
+    spec: '横長 4:3',
   },
   expansionSeasonal: {
-    alt: '同一キャラクターの季節イベント衣装(夏・ハロウィン・正月)',
+    src: 'images/expansion-seasonal.webp',
+    alt: '同一キャラクターの季節イベント衣装(夏の水着・ハロウィン・正月の晴れ着)',
     label: '季節イベント衣装',
-    spec: '横長 4:3(Lovartで再生成予定)',
+    spec: '横長 4:3',
   },
   expansionNewChar: {
-    alt: '同じ画風・同じ塗りで描いた追加キャラクター',
+    src: 'images/expansion-new-char.webp',
+    alt: '同じ画風・同じ塗りで描いた追加キャラクター(黒髪ロング・青い瞳の別キャラクター)',
     label: '追加キャラクター(同じ画風)',
-    spec: '横長 4:3(Lovartで再生成予定)',
+    spec: '横長 4:3',
   },
   expansionEventCg: {
-    alt: '同一キャラクターのイベントCG・スチル',
+    src: 'images/expansion-event-cg.webp',
+    alt: '同一キャラクターのイベントCG(夕暮れの海辺で振り返る一枚絵)',
     label: 'イベントCG / スチル',
-    spec: '横長 4:3(Lovartで再生成予定)',
+    spec: '横長 4:3',
   },
 
   /* ── 4. Steam・SNS・動画への展開 ── */
   mediaCapsuleHeader: {
-    alt: 'Steamヘッダーカプセル(460×215)のモックアップ',
+    src: 'images/media-capsule-header.webp',
+    alt: 'Steamヘッダーカプセル(460×215)規格。桜と街並みを望む展望台を背景に、同一キャラクターの制服姿を右に寄せ、左にロゴ用の余白を残した構図',
     label: 'ヘッダーカプセル',
     spec: '460×215',
   },
   mediaCapsuleMain: {
-    alt: 'Steamメインカプセル(616×353)のモックアップ',
+    src: 'images/media-capsule-main.webp',
+    alt: 'Steamメインカプセル(616×353)規格。ヘッダーと同じキャラクター・同じ制服・同じ展望台で、桜と街並みを背景にした引きの構図',
     label: 'メインカプセル',
     spec: '616×353',
   },
   mediaCapsuleLibrary: {
-    alt: 'Steamライブラリ縦型カプセル(600×900)のモックアップ',
+    src: 'images/media-capsule-library.webp',
+    alt: 'Steamライブラリ縦型カプセル(600×900)規格。同じキャラクター・同じ制服・同じ展望台の全身を縦構図で収めたもの',
     label: 'ライブラリ縦型',
     spec: '600×900',
   },
   mediaOgp: {
-    alt: 'SNS・OGP向けの16:9告知イメージ(同一キャラクター)',
+    src: 'images/media-ogp.webp',
+    alt: 'SNS・OGP向けの16:9告知イメージ(DLCドレス姿で発表ポーズ・紙吹雪の背景)',
     label: 'SNS / OGP 告知画像',
-    spec: '16:9(Lovartで再生成予定)',
+    spec: '16:9',
   },
   mediaVideo: {
-    alt: '同一キャラクターの縦型動画(9:16)サムネイル',
+    src: 'images/media-video.webp',
+    alt: '同一キャラクターの縦型動画(9:16)サムネイル(放課後の街で話しかけるポーズ)',
     label: '縦型動画',
-    spec: '9:16(Lovartで再生成予定)',
+    spec: '9:16 クリック再生',
   },
 
   /* ── 6. 制作工程 ── */
@@ -831,10 +859,10 @@ export default function Proof() {
       <div className="grid grid-cols-3 gap-3 sm:gap-5">
         <Placeholder slot={images.proofPageEarly} badge="P.7" className="aspect-[3/4]" />
         <Placeholder slot={images.proofPageMid} badge="P.39" className="aspect-[3/4]" />
-        <Placeholder slot={images.proofPageLate} badge="終盤" className="aspect-[3/4]" />
+        <Placeholder slot={images.proofPageLate} badge="P.100" className="aspect-[3/4]" />
       </div>
       <p className="mt-3 text-center text-xs text-mute">
-        物語の序盤・中盤・終盤 — 場面もトーンも変わっても、同一人物であることが一目で分かります。
+        90ページ以上離れた場面でも、同一人物であることが一目で分かります。
       </p>
 
       {/* 表情比較・衣装比較 */}
@@ -976,9 +1004,12 @@ export default function MediaKit() {
       <div className="grid gap-8 lg:grid-cols-2">
         {/* Steam規格モック */}
         <div>
-          <h3 className="mb-4 text-sm font-bold text-mute">
+          <h3 className="mb-1.5 text-sm font-bold text-mute">
             Steam ストア規格(実寸比率)
           </h3>
+          <p className="mb-4 text-[11px] text-mute">
+            同じ1体のキャラクターを、3規格それぞれの構図で書き出した例
+          </p>
           <div className="grid grid-cols-[2fr_1fr] gap-4">
             <div className="flex flex-col gap-4">
               <div>
@@ -1623,7 +1654,7 @@ export default function Contact() {
 ## `lovart-generation-specs.md`
 
 ````markdown
-# Lovart 再生成指示書(12枚)
+# Lovart 再生成指示書(15枚 — 全枚数生成済み)
 
 すべて `haruka_reference.jpg`(制服・ツインテール・緑目・ピンクリボンの基準画像)を**キャラクター参照としてアップロード**したうえで生成する。
 表示枠に合わせたアスペクト比で生成すること(トリミング前提にしない)。
@@ -1703,11 +1734,36 @@ export default function Contact() {
 - 内容: 縦型ショート動画のサムネイル風。全身または膝上。上下に余白を作らず9:16いっぱいに描く(レターボックス禁止)。
 - スロット: `mediaVideo`
 
+## Steamカプセル3規格(3枚・ロゴなし)
+
+方針(2026-08-06決定): 実タイトルのロゴは入れず、**同じキャラクターのビジュアルだけ**でSteamの3規格を作る。
+「同一キャラクターを規格違いで書き出せること」を見せるのが目的なので、テキスト・ロゴ・タイトル文字は一切入れない。
+3枚は同じ衣装・同じ塗りで、構図だけ規格に合わせて変える(3枚並べたとき同一キャラだと一目で分かること)。
+
+3枚とも**桜と街並みを望む同じ展望台**が舞台。
+
+### 13. media-capsule-header.webp — ヘッダーカプセル ✅
+- 比率: **460:215**(指定 1840×860 / 実際 **1840×864** = 2.130)
+- 生成結果: 展望台の桜と街並みを背景に、制服姿を右に寄せ、左は風景のみ。ロゴ用の余白として機能する
+- スロット: `mediaCapsuleHeader` + `heroCapsule`(同じ画像を流用)
+
+### 14. media-capsule-main.webp — メインカプセル ✅
+- 比率: **616:353**(指定 1848×1059 / 実際 **1856×1072** = 1.731)
+- 生成結果: 展望台で桜と街並みを背景にした全身の引き構図
+- スロット: `mediaCapsuleMain`
+
+### 15. media-capsule-library.webp — ライブラリ縦型カプセル ✅
+- 比率: **600:900**(指定 1200×1800 / 実際 **1200×1808** = 0.664)
+- 生成結果: 同じ展望台での制服姿の全身・縦構図。レターボックスなし
+- スロット: `mediaCapsuleLibrary`
+
+いずれも指定比率との差は1%以内。生成モデルは GPT Image 2、参照は既存の「衣装比較シート」。
+初回は13と15の背景が無地グレーになったため、同じスレッドで追撃して作り直している(追加32クレジット)。
+
 ---
 
 ## 生成しない枠(現状のまま)
 
-- Steamカプセル4枠(heroCapsule / mediaCapsuleHeader / mediaCapsuleMain / mediaCapsuleLibrary)
 - 人手修正の前後比較2枠(processBefore / processAfter)
 - 漫画ページ比較3枠(P.7=manga_multi / P.39=manga_infographic / 終盤=manga_hakama)
 - 表情比較シート(manga_angles)
@@ -1740,49 +1796,24 @@ heroKey: {
 - 各スロットの推奨サイズは `spec` 欄を参照してください
 ````
 
-## `.github/workflows/deploy.yml`
+## `wrangler.jsonc`
 
-````yaml
-name: Deploy to GitHub Pages
+2026-08-06にGitHub PagesからCloudflare Workers(static assets)へ切り替え(`.github/workflows/deploy.yml` は削除済み)。
 
-on:
-  push:
-    branches: [main]
-  workflow_dispatch:
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: true
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-      - run: npm ci
-      - run: npm run build
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+````jsonc
+// Cloudflare Workers(static assets)デプロイ設定
+// デプロイ: npm run deploy(build して dist/ をアップロード)
+// 初回のみ `npx wrangler login` でCloudflareアカウントにログインすること
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "game-art-site",
+  "compatibility_date": "2026-08-06",
+  "assets": {
+    "directory": "./dist",
+    // 存在しないパスでもトップページを返す(1ページ構成のため)
+    "not_found_handling": "single-page-application"
+  }
+}
 ````
 
 ## `README.md`
@@ -1792,7 +1823,7 @@ jobs:
 
 Steam・インディーゲーム会社向けの営業サイト。最重要ゴールは **Character Continuity & DLC Kit** の問い合わせ獲得。
 
-React + TypeScript + Tailwind CSS(v4)+ Vite。GitHub Pages 向け静的サイト。
+React + TypeScript + Tailwind CSS(v4)+ Vite。Cloudflare Workers(static assets)で公開する静的サイト。
 
 ## 開発
 
@@ -1822,10 +1853,14 @@ src/
 2. **問い合わせフォームURL** — `src/content/site.ts` の `contactFormUrl`(現在はプレースホルダー)
 3. **OGP画像** — `public/ogp.png` を置き、`index.html` に `og:image` を追加
 
-## GitHub Pages への公開
+## Cloudflare への公開
 
-リポジトリを GitHub に push し、Settings → Pages → Source を「GitHub Actions」にすると、
-`.github/workflows/deploy.yml` が main への push ごとに自動デプロイします。
+Cloudflare Workers の static assets として `dist/` を配信する(設定は `wrangler.jsonc`)。
 
-`vite.config.ts` の `base: './'` により、`https://<user>.github.io/<repo>/` のサブパス配下でも動作します。
+```bash
+npx wrangler login   # 初回のみ(ブラウザでCloudflareアカウントにログイン)
+npm run deploy       # build して https://game-art-site.<account>.workers.dev に公開
+```
+
+`vite.config.ts` の `base: './'` は相対パス出力のための設定で、Cloudflare 上でもそのまま動作します。
 ````

@@ -18,9 +18,12 @@ export default function MediaKit() {
       <div className="grid gap-8 lg:grid-cols-2">
         {/* Steam規格モック */}
         <div>
-          <h3 className="mb-4 text-sm font-bold text-mute">
+          <h3 className="mb-1.5 text-sm font-bold text-mute">
             Steam ストア規格(実寸比率)
           </h3>
+          <p className="mb-4 text-[11px] text-mute">
+            同じ1体のキャラクターを、3規格それぞれの構図で書き出した例
+          </p>
           <div className="grid grid-cols-[2fr_1fr] gap-4">
             <div className="flex flex-col gap-4">
               <div>
