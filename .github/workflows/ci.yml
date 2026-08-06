@@ -1,0 +1,41 @@
+name: CI
+
+# ビルドが壊れたまま main に入るのを防ぐための検査。
+# デプロイはここでは行わない。公開は `npm run deploy` を手で叩く運用にしている
+# (外部公開にあたるため、そのつど確認を取ってから実行する)。
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# 同じブランチで新しい push があったら、古い実行は打ち切る
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          # ローカルの開発環境と揃えている
+          node-version: 22
+          cache: npm
+
+      # package-lock.json どおりに入れる(lockfileとズレていたら失敗する)
+      - run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      # tsc -b の型チェックも通る。
+      # dashboard相当のテンプレート文字列は無いが、型エラーとビルド失敗をここで止める
+      - name: Build
+        run: npm run build
