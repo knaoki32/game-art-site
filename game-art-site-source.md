@@ -13,7 +13,14 @@ Steam・インディーゲーム会社向け営業サイトの完全なソース
 
 ## 画像の現状(2026-07-20 更新 — Lovart生成完了)
 
-- **24スロット中22スロットに実画像を配置済み**(2026-08-06時点。残りは `processBefore` / `processAfter` の2枠のみ)。Lovartで基準画像(haruka_reference)を参照して12枚を表示枠と同比率で生成し、WebP化済み。さらに2026-08-06にSteamカプセル3規格を追加生成
+- **24スロット中22スロットに実画像を配置済み**(2026-08-06時点。残りは `processBefore` / `processAfter` の2枠のみ)
+- 🎨 **2026-08-06、AI生成画像を全16枚「ファンタジーRPG版はるか」に作り直した**(なおの指示「Steamのゲームキャラっぽいテイストに」)
+  - 基準は `haruka-fantasy-base.webp`。顔立ち・髪型・瞳・ピンクのリボンは従来のはるかのまま、装備と世界観だけファンタジーに変更
+  - メディア5枚(カプセル3規格・OGP・縦型動画)は夕暮れの高台+城下町で統一
+  - 旧・学園版マスターPNGは `assets-original/archive-school-uniform/` に退避(消していない)
+  - 詳細は `lovart-generation-specs.md`
+- 🚨 **漫画の実ページ4枚(`7.webp` / `39.webp` / `100.jpg` / `manga_angles.jpg`)は刷新の対象外**。なおが実際に描いた109ページの実物で、実績の証明そのもの。AI生成に差し替えると証明が捏造になる
+- 📣 **OGP対応済み**(2026-08-06)。`og:image` と `og:url` がそもそも無かったのが共有時に画像が出なかった原因。`public/ogp.jpg` を1200×630ちょうどのJPEGで作成し、絶対URLで指定
 - 漫画ページ比較: P.7(7.webp)/ P.39(39.webp)/ P.100(100.jpg)。表情比較=manga_angles.jpg。基準=haruka_reference.jpg(heroKey / expansionBase)
 - 生成画像のマスターPNGは `assets-original/` に保管(公開物はWebP)
 - Lovartプロジェクト: projectId 4503bed717be4f89a10d6d62906f3cb1(canvas: https://www.lovart.ai/canvas?projectId=4503bed717be4f89a10d6d62906f3cb1)。追加生成時は同スレッドを再利用するとキャラ文脈が引き継がれる
