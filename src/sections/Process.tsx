@@ -1,6 +1,4 @@
 import Section from '../components/Section'
-import Placeholder from '../components/Placeholder'
-import { images } from '../content/images'
 
 const steps = [
   {
@@ -91,17 +89,18 @@ export default function Process() {
         </p>
       </div>
 
-      {/* 人手修正の証拠(1組のみ) */}
-      <div className="mt-8 grid gap-5 md:grid-cols-[1fr_1fr_1.2fr] md:items-center">
-        <Placeholder slot={images.processBefore} badge="修正前" className="aspect-[4/3]" />
-        <Placeholder slot={images.processAfter} badge="修正後" className="aspect-[4/3]" />
-        <div>
-          <h3 className="text-sm font-bold">全納品物に、人の手が入ります</h3>
-          <p className="mt-2 text-sm leading-relaxed text-mute">
-            生成物は必ず基準画像と照合し、指先・髪の流れ・衣装のディテールまで人手で修正してから納品します。
-            「生成したまま」の画像を納品することはありません。
-          </p>
-        </div>
+      {/* 人手修正の明示。
+          もともとは修正前後の比較画像を並べていたが、提示できる実素材が揃わないため
+          画像枠を外して文言だけのパネルにした(2026-08-06)。
+          工程04と対になる主張なので、文言自体は残している。
+          実素材が用意できたら images.ts の processBefore / processAfter に src を入れ、
+          ここに比較画像を戻す。 */}
+      <div className="mt-8 rounded-lg border border-line bg-card p-6 sm:p-8">
+        <h3 className="text-sm font-bold">全納品物に、人の手が入ります</h3>
+        <p className="mt-2 max-w-3xl text-sm leading-relaxed text-mute">
+          生成物は必ず基準画像と照合し、指先・髪の流れ・衣装のディテールまで人手で修正してから納品します。
+          「生成したまま」の画像を納品することはありません。
+        </p>
       </div>
     </Section>
   )
