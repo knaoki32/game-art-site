@@ -71,7 +71,7 @@ export default function Products() {
             }`}
           >
             {p.featured && (
-              <p className="mb-3 inline-flex w-fit rounded bg-gold px-2 py-0.5 text-[11px] font-bold text-ink">
+              <p className="mb-3 inline-flex w-fit rounded bg-gold-fill px-2 py-0.5 text-[11px] font-bold text-ink">
                 主力商品
               </p>
             )}
@@ -91,7 +91,7 @@ export default function Products() {
                 </li>
               ))}
             </ul>
-            <div className="mt-5 rounded-md bg-ink/60 p-3">
+            <div className="mt-5 rounded-md bg-card-2 p-3">
               <h4 className="text-xs font-bold text-mute">こんなチームに</h4>
               <p className="mt-1 text-xs leading-relaxed text-mute">{p.forWho}</p>
             </div>

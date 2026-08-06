@@ -20,7 +20,7 @@ export default function CtaButton({
     'inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 text-sm font-bold transition-colors'
   const styles =
     variant === 'primary'
-      ? 'bg-gold text-ink hover:bg-gold-soft'
+      ? 'bg-gold-fill text-ink hover:bg-gold-soft'
       : 'border border-line text-body hover:border-gold hover:text-gold'
   return (
     <a

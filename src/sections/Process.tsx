@@ -67,7 +67,7 @@ export default function Process() {
           1枚の基準画像から、すべての媒体へ
         </h3>
         <div className="mt-4 flex flex-col items-center gap-2 sm:flex-row sm:justify-center sm:gap-4">
-          <span className="rounded border border-gold/50 bg-ink px-4 py-2 text-sm font-bold text-gold">
+          <span className="rounded border border-gold-fill/50 bg-ink px-4 py-2 text-sm font-bold text-gold-fill">
             基準画像
           </span>
           <span aria-hidden="true" className="text-mute">

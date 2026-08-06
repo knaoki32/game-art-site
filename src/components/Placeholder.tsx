@@ -50,7 +50,7 @@ export default function Placeholder({ slot, className = '', badge, priority = fa
         </div>
       )}
       {badge && (
-        <span className="absolute top-2 left-2 rounded bg-ink/85 px-2 py-0.5 text-[11px] font-bold tracking-wide text-gold">
+        <span className="absolute top-2 left-2 rounded bg-ink/85 px-2 py-0.5 text-[11px] font-bold tracking-wide text-gold-fill">
           {badge}
         </span>
       )}
