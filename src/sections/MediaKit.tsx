@@ -73,7 +73,7 @@ export default function MediaKit() {
           2列グリッドの外に出して横幅いっぱいに置く。
           右列(SNS・動画)の中に入れていた頃は、右半分だけに閉じ込められたうえ
           左列の内容より下から始まって、どこにも揃っていない見た目になっていた。 */}
-      <ul className="mt-10 grid gap-3 text-sm text-mute md:grid-cols-3 md:gap-6">
+      <ul className="mt-10 space-y-2 text-sm text-mute">
         {[
           '画像・漫画・動画を同じ基準画像から制作 — 媒体をまたいでも同じキャラクター',
           '各媒体の規格(サイズ・セーフエリア)に合わせて書き出し',
