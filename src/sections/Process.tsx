@@ -98,8 +98,9 @@ export default function Process() {
       <div className="mt-8 rounded-lg border border-line bg-card p-6 sm:p-8">
         <h3 className="text-sm font-bold">全納品物に、人の手が入ります</h3>
         <p className="mt-2 max-w-3xl text-sm leading-relaxed text-mute">
-          生成物は必ず基準画像と照合し、指先・髪の流れ・衣装のディテールまで人手で修正してから納品します。
-          「生成したまま」の画像を納品することはありません。
+          {/* 和文は連結して書く。JSXの改行はスペース1個になり、日本語では字間が空いて見えるため */}
+          {'生成物は必ず基準画像と照合し、指先・髪の流れ・衣装のディテールまで人手で修正してから納品します。' +
+            '「生成したまま」の画像を納品することはありません。'}
         </p>
       </div>
     </Section>

@@ -36,6 +36,10 @@ body {
   color: var(--color-body);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  /* 和文を文節単位で折り返す。既定だと「納品します。」が「納品しま/す。」のように
+     語の途中で割れる。未対応ブラウザ(Safari/Firefox)は従来どおりの折り返しに戻るだけなので、
+     入れて損はしない。 */
+  word-break: auto-phrase;
 }
 
 ::selection {

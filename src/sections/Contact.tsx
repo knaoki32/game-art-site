@@ -10,8 +10,9 @@ export default function Contact() {
           キャラクターの展開、ご相談ください。
         </h2>
         <p className="mt-5 text-sm leading-relaxed text-mute sm:text-base">
-          「この絵柄を維持できるか?」の検証サンプルからでも、キャラクター資料を共有してのご相談からでも構いません。
-          お見積り・ご相談は無料です。
+          {/* 和文は連結して書く。JSXの改行はスペース1個になり、日本語では字間が空いて見えるため */}
+          {'「この絵柄を維持できるか?」の検証サンプルからでも、キャラクター資料を共有してのご相談からでも構いません。' +
+            'お見積り・ご相談は無料です。'}
           <br />
           <span lang="en">Inquiries in English are welcome.</span>
         </p>

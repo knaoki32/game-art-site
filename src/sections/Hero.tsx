@@ -27,8 +27,9 @@ export default function Hero() {
               <span className="text-gold">崩さない。</span>
             </h1>
             <p className="mt-5 text-sm leading-relaxed text-mute sm:text-base">
-              立ち絵・表情差分・衣装差分・DLC・Steamカプセル・SNS・動画まで、
-              一貫した姿のまま展開する制作パートナーです。
+              {/* 和文は連結して書く。JSXの改行はスペース1個になり、日本語では字間が空いて見えるため */}
+              {'立ち絵・表情差分・衣装差分・DLC・Steamカプセル・SNS・動画まで、' +
+                '一貫した姿のまま展開する制作パートナーです。'}
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <CtaButton href="#contact">制作について相談する</CtaButton>
