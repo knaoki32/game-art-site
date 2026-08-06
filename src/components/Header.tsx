@@ -5,7 +5,7 @@ export default function Header() {
   const [open, setOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line bg-ink/90 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-line bg-paper/90 backdrop-blur">
       <div className="mx-auto flex h-14 w-full max-w-6xl items-center justify-between px-5 sm:px-8">
         <a href="#top" className="flex items-baseline gap-2">
           <span className="text-lg font-black tracking-wide">{site.brand}</span>
@@ -26,7 +26,7 @@ export default function Header() {
           ))}
           <a
             href="#contact"
-            className="rounded-md bg-gold px-4 py-2 text-xs font-bold text-ink transition-colors hover:bg-gold-soft"
+            className="rounded-md bg-gold-fill px-4 py-2 text-xs font-bold text-ink transition-colors hover:bg-gold-soft"
           >
             相談する
           </a>
@@ -59,7 +59,7 @@ export default function Header() {
       {open && (
         <nav
           aria-label="メイン(モバイル)"
-          className="border-t border-line bg-ink px-5 pb-4 md:hidden"
+          className="border-t border-line bg-paper px-5 pb-4 md:hidden"
         >
           {nav.map((item) => (
             <a
@@ -73,7 +73,7 @@ export default function Header() {
           ))}
           <a
             href="#contact"
-            className="mt-4 block rounded-md bg-gold px-4 py-3 text-center text-sm font-bold text-ink"
+            className="mt-4 block rounded-md bg-gold-fill px-4 py-3 text-center text-sm font-bold text-ink"
             onClick={() => setOpen(false)}
           >
             制作について相談する

@@ -1,15 +1,22 @@
 @import "tailwindcss";
 
 @theme {
-  /* ブランドパレット: ダーク基調 + 金アクセント(構成案 v3 準拠) */
-  --color-ink: #111217; /* 背景 */
-  --color-card: #1b1d24; /* カード面 */
-  --color-card-2: #22242e; /* カード面(明) */
-  --color-line: #2c2f3a; /* 罫線 */
-  --color-body: #e8e6e1; /* 本文(温白) */
-  --color-mute: #8b8e9a; /* 補助テキスト */
-  --color-gold: #c9a24a; /* アクセント(CTA・強調のみ) */
-  --color-gold-soft: #e3c37a;
+  /* ブランドパレット: ライト基調 + 金アクセント(2026-08-06、ダーク基調から変更)
+     金は2系統ある。理由: 同じ金でも「白地に文字として置く」場合と
+     「濃色チップの塗り/その上の文字として置く」場合ではAAコントラストを満たす明度が逆になるため。
+       --color-gold      … 白地に直接置くテキスト・枠線用(見出し添え字・番号・箇条書きなど)
+       --color-gold-fill … ボタンやバッジの「塗り」、および暗色チップ上の文字用
+       --color-gold-soft … 塗りボタンのホバー(明るく変化) */
+  --color-paper: #f7f3ea; /* 背景(温かみのあるクリーム) */
+  --color-card: #ffffff; /* カード面 */
+  --color-card-2: #efe7d3; /* カード面(濃) — タグ・強調セルなど */
+  --color-line: #e2dbc7; /* 罫線 */
+  --color-body: #232228; /* 本文(濃インク) */
+  --color-mute: #6e6c74; /* 補助テキスト */
+  --color-gold: #7f611f; /* テキスト・枠線用(白地でAA準拠) */
+  --color-gold-fill: #c9a24a; /* ボタン塗り・暗色チップ文字用 */
+  --color-gold-soft: #e3c37a; /* 塗りボタンのホバー */
+  --color-ink: #111217; /* 暗色アクセント(ボタン文字・暗色チップの地) */
 
   --font-sans: "Noto Sans JP", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
@@ -25,7 +32,7 @@ html {
 }
 
 body {
-  background-color: var(--color-ink);
+  background-color: var(--color-paper);
   color: var(--color-body);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
