@@ -1,4 +1,4 @@
-# knao — Character Art Partner 営業サイト(実装済みソース一式)
+# なお — Character Art Partner 営業サイト(実装済みソース一式)
 
 Steam・インディーゲーム会社向け営業サイトの完全なソースコード。
 このファイル1つで、他のAI・開発者が実装の続き(画像差し替え・文言調整・機能追加)を行えます。
@@ -110,21 +110,37 @@ export default defineConfig({
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>キャラクター一貫性×DLC展開｜ゲーム向けキャラクターアート制作パートナー knao</title>
+    <title>キャラクター一貫性×DLC展開｜ゲーム向けキャラクターアート制作パートナー なお</title>
     <meta
       name="description"
       content="同じキャラクターを立ち絵・表情差分・衣装差分・DLC・Steamカプセル・SNS・動画まで一貫して展開。109ページのフルカラー漫画で実証したキャラクター一貫性を、貴社タイトルのDLC・LiveOps運用に。NDA対応・日英対応。"
     />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Character Continuity & DLC Kit｜knao" />
+    <meta property="og:title" content="Character Continuity & DLC Kit｜なお" />
     <meta
       property="og:description"
       content="同じキャラクターを、立ち絵から動画まで、崩さない。ゲーム会社のキャラクター運用を支える制作パートナー。"
     />
     <meta property="og:locale" content="ja_JP" />
     <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:url" content="https://game-art-site.knaoki32.workers.dev/" />
+    <!-- og:image は絶対URLでないとクローラーが拾わない。JPEGなのは WebP 非対応のクローラーがまだいるため -->
+    <meta
+      property="og:image"
+      content="https://game-art-site.knaoki32.workers.dev/ogp.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="夕暮れの高台から城下町を見下ろすファンタジー装備のキャラクター。左側にタイトル用の余白"
+    />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@knaoki23" />
+    <meta
+      name="twitter:image"
+      content="https://game-art-site.knaoki32.workers.dev/ogp.jpg"
+    />
     <meta name="theme-color" content="#111217" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -136,7 +152,7 @@ export default defineConfig({
       {
         "@context": "https://schema.org",
         "@type": "ProfessionalService",
-        "name": "knao — Character Art Partner",
+        "name": "なお — Character Art Partner",
         "description": "ゲーム会社向けキャラクターアート制作。キャラクター一貫性を維持した立ち絵・差分・DLC・Steamストア素材・SNS・動画の展開。",
         "areaServed": "Worldwide",
         "availableLanguage": ["Japanese", "English"],
@@ -267,9 +283,9 @@ export default function App() {
  */
 
 export const site = {
-  brand: 'knao',
+  brand: 'なお',
   brandTagline: 'Character Art Partner',
-  /** 問い合わせ用 Google フォーム URL(要差し替え) */
+  /** 問い合わせ用 Google フォーム URL */
   contactFormUrl:
     'https://docs.google.com/forms/d/e/1FAIpQLSd3JzhylqDMy-xuoaWoAag5SvcHwfgzZWwx4URyABMcfQJQdw/viewform',
   /** X (Twitter) プロフィール */
@@ -1826,7 +1842,7 @@ heroKey: {
 ## `README.md`
 
 ````markdown
-# knao — Character Art Partner(営業サイト)
+# なお — Character Art Partner(営業サイト)
 
 Steam・インディーゲーム会社向けの営業サイト。最重要ゴールは **Character Continuity & DLC Kit** の問い合わせ獲得。
 

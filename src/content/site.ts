@@ -4,7 +4,7 @@
  */
 
 export const site = {
-  brand: 'knao',
+  brand: 'なお',
   brandTagline: 'Character Art Partner',
   /** 問い合わせ用 Google フォーム URL */
   contactFormUrl:

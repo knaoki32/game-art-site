@@ -1,4 +1,4 @@
-# knao — Character Art Partner(営業サイト)
+# なお — Character Art Partner(営業サイト)
 
 Steam・インディーゲーム会社向けの営業サイト。最重要ゴールは **Character Continuity & DLC Kit** の問い合わせ獲得。
 
