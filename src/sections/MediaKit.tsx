@@ -66,28 +66,27 @@ export default function MediaKit() {
               <p className="mt-1.5 text-[11px] text-mute">縦型動画 9:16</p>
             </div>
           </div>
-          <ul className="mt-6 space-y-2 text-sm text-mute">
-            <li className="flex gap-2">
-              <span aria-hidden="true" className="text-gold">
-                ◆
-              </span>
-              画像・漫画・動画を同じ基準画像から制作 — 媒体をまたいでも同じキャラクター
-            </li>
-            <li className="flex gap-2">
-              <span aria-hidden="true" className="text-gold">
-                ◆
-              </span>
-              各媒体の規格(サイズ・セーフエリア)に合わせて書き出し
-            </li>
-            <li className="flex gap-2">
-              <span aria-hidden="true" className="text-gold">
-                ◆
-              </span>
-              ローンチからアップデート告知まで、時期をまたいでも一貫性を保ちやすい工程で継続制作
-            </li>
-          </ul>
         </div>
       </div>
+
+      {/* この3項目はSteam規格とSNS・動画の両方にかかる説明なので、
+          2列グリッドの外に出して横幅いっぱいに置く。
+          右列(SNS・動画)の中に入れていた頃は、右半分だけに閉じ込められたうえ
+          左列の内容より下から始まって、どこにも揃っていない見た目になっていた。 */}
+      <ul className="mt-10 grid gap-3 text-sm text-mute md:grid-cols-3 md:gap-6">
+        {[
+          '画像・漫画・動画を同じ基準画像から制作 — 媒体をまたいでも同じキャラクター',
+          '各媒体の規格(サイズ・セーフエリア)に合わせて書き出し',
+          'ローンチからアップデート告知まで、時期をまたいでも一貫性を保ちやすい工程で継続制作',
+        ].map((item) => (
+          <li key={item} className="flex gap-2">
+            <span aria-hidden="true" className="mt-0.5 shrink-0 text-gold">
+              ◆
+            </span>
+            {item}
+          </li>
+        ))}
+      </ul>
     </Section>
   )
 }

@@ -24,8 +24,9 @@ export default function Section({ id, kicker, title, lead, children, tinted = fa
         <h2 className="mt-3 text-2xl font-black leading-snug sm:text-3xl md:text-4xl">
           {title}
         </h2>
+        {/* リード文は幅を絞らず、コンテナ(max-w-6xl)いっぱいに流す */}
         {lead && (
-          <p className="mt-5 max-w-3xl text-sm leading-relaxed text-mute sm:text-base">{lead}</p>
+          <p className="mt-5 text-sm leading-relaxed text-mute sm:text-base">{lead}</p>
         )}
         <div className="mt-10 md:mt-14">{children}</div>
       </div>
