@@ -5,9 +5,11 @@ export default function Header() {
   const [open, setOpen] = useState(false)
 
   // 地は不透明。半透明+ぼかし(ガラス調)はAIの定番の型で、地色も1種増えるためやめている
+  // 左右の余白は header 自体に付ける(他セクションと同じ階層)。
+  // 以前は内側の div に付けていたため、ブランド名の左端が本文の見出しより32px内側にずれていた。
   return (
-    <header className="sticky top-0 z-50 border-b border-line bg-paper">
-      <div className="mx-auto flex h-14 w-full max-w-6xl items-center justify-between px-5 sm:px-8">
+    <header className="sticky top-0 z-50 border-b border-line bg-paper px-5 sm:px-8">
+      <div className="mx-auto flex h-14 w-full max-w-6xl items-center justify-between">
         <a href="#top" className="flex items-baseline gap-2">
           <span className="text-lg font-black tracking-wide">{site.brand}</span>
           {/* 1024px未満ではナビが折れるので肩書きを畳む */}
@@ -58,10 +60,12 @@ export default function Header() {
         </button>
       </div>
 
+      {/* headerに移したpaddingをマイナスマージンで打ち消し、区切り線(border-t)を
+          画面幅いっぱいに保つ。中身の左右位置は同じ値のpaddingで元どおりに */}
       {open && (
         <nav
           aria-label="メイン(モバイル)"
-          className="border-t border-line bg-paper px-5 pb-4 md:hidden"
+          className="-mx-5 border-t border-line bg-paper px-5 pb-4 sm:-mx-8 sm:px-8 md:hidden"
         >
           {nav.map((item) => (
             <a
