@@ -10,7 +10,7 @@ export default function Expansion() {
   return (
     <Section
       id="expansion"
-      kicker="Character Expansion"
+      kicker="キャラクターの展開"
       title="1体のキャラクターを、長く運用できる資産に。"
       lead="既にお持ちのキャラクターが出発点です。基準画像を確立したあとは、DLC衣装・季節イベント・追加キャラクター・イベントCGへ、同じ姿のまま展開できます。"
     >
@@ -22,7 +22,7 @@ export default function Expansion() {
             badge="ベース"
             className="min-h-[280px] flex-1 lg:min-h-[360px]"
           />
-          <p className="mt-3 text-xs text-mute">
+          <p className="mt-3 text-sm text-mute">
             貴社の既存キャラクター(または新規基準画像)
           </p>
         </div>
@@ -54,14 +54,14 @@ export default function Expansion() {
             <div key={item.title} className="flex flex-col">
               <Placeholder slot={item.slot} className="aspect-[4/3]" />
               <h3 className="mt-3 text-sm font-bold">{item.title}</h3>
-              <p className="mt-1 text-xs leading-relaxed text-mute">{item.desc}</p>
+              <p className="mt-1 text-sm leading-relaxed text-mute">{item.desc}</p>
             </div>
           ))}
         </div>
       </div>
 
       <div className="mt-10 rounded-lg border border-gold/30 bg-card p-6 text-center sm:p-8">
-        <p className="text-base font-bold sm:text-lg">
+        <p className="text-base font-bold">
           基準画像と制作条件を、キャラクターごとに保管します。
         </p>
         <p className="mt-2 text-sm text-mute">

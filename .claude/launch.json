@@ -5,7 +5,7 @@
       "name": "game-art-site",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev"],
-      "cwd": "C:/Users/Admin/Claude/game-art-site",
+      "cwd": "G:/Claude/game-art-site",
       "port": 5173
     }
   ]

@@ -1,11 +1,11 @@
 # HANDOFF: 営業サイト なお Character Art Partner(game-art-site)
 
-2026-08-06 更新。**このプロジェクトは完了**。この1ファイルだけ読めば仕事を再開できることを目標にした引き継ぎ文書。
+2026-08-30 更新(金継ぎ診断の本体反映・節ラベル日本語化・問い合わせフォームの内製)。この1ファイルだけ読めば仕事を再開できることを目標にした引き継ぎ文書。
 
 ## 現在地(どこまで終わっているか)
 
 - 🚀 **公開済み: https://game-art-site.knaoki32.workers.dev**(2026-08-06、なおの承認を得てデプロイ)
-  - 最新 Version ID `7fa200a7-13e0-4e65-867b-49d0eb6d914a`(レイアウト修正を反映。本番のDOMで確認済み)
+  - 最新 Version ID `8a074e8b-8bbf-49b8-8ba0-4365fd03acb1`(金継ぎ反映・節ラベル日本語化・サイト内フォーム。本番で疎通確認済み)
   - 再デプロイは `npm run deploy` のみ。**公開は外部公開なので、そのつどなおの確認を取ること**
 - ✅ **CIあり**(2026-08-06導入)。`.github/workflows/ci.yml` が push / PR で `npm ci` → lint → build を回す。**デプロイはCIに含めていない**(公開は手動運用を維持するため)
 - 📐 **2026-08-06、レイアウトを2点修正した**
@@ -69,9 +69,42 @@
   - サイト側: `src/content/site.ts` の `brand`、`index.html` の `<title>` / `og:title` / JSON-LD `name`、README.md・HANDOFF.md・game-art-site-source.md の見出しを一括で変更
   - フォーム側: ドキュメント名(Driveのファイル名)と、フォーム本文のH1タイトルを「なお」に変更
   - **X(旧Twitter)のURL・ハンドル(`@knaoki23`)、`knaoki32.workers.dev` などの実URL・実アカウントIDは変更していない**。これらは技術的な識別子で、表示上の名乗りとは別物のため
-- `.claude/launch.json` の `cwd` が旧パス `C:/Users/Admin/product/game-art-site` を指していたので、現在地 `C:/Users/Admin/Claude/game-art-site` に修正済み
+- `.claude/launch.json` の `cwd` が旧パス `C:/Users/Admin/product/game-art-site` を指していたので、現在地 `G:/Claude/game-art-site` に修正済み
 - MediaKitセクションに「同じ1体のキャラクターを、3規格それぞれの構図で書き出した例」というキャプションを追加(3規格を並べる意図を明示するため)
 - `game-art-site-source.md` は上記すべてを反映済み(未コミット)
+
+## 📮 問い合わせフォーム(2026-08-30にGoogleフォームから内製へ移行)
+
+**送信先はKVのみ。外部送信もメール通知も無い** — 届いたかどうかは管理ページを見に行く運用。
+
+- 送信: `POST /api/contact`(Worker `worker/index.ts`)。フォーム本体は `src/components/ContactForm.tsx`
+- 保存: KV名前空間 `CONTACT_KV`(id `f5b4810f0e134ff98325ba57b5d0a2fd`)。キーは `contact:<ISO日時>:<乱数>`、**保存期間90日**(TTL)
+- 確認: `https://game-art-site.knaoki32.workers.dev/admin/contacts?token=<ADMIN_TOKEN>`
+  - トークンはWorkerのsecret `ADMIN_TOKEN`。ローカル控えは `.admin-token.local`(gitignore対象)。`.dev.vars` も同様
+  - **トークンを紛失したら `npx wrangler secret put ADMIN_TOKEN` で入れ直す**(既存の問い合わせは消えない)
+- スパム対策: ①ハニーポット(隠し項目 `website` が埋まっていたら成功を装って捨てる) ②同一IPは60秒に1件 ③必須項目とメール形式の検査。**Turnstileは入れていない**(実害が出たら足す)
+- ⚠️ `site.contactFormUrl` は `#contact`(サイト内アンカー)になった。**Googleフォームはもう使っていない**が、旧フォーム自体は消していない
+- ⚠️ **メール通知が無いので、放置すると問い合わせに気づけない**。定期的に管理ページを見るか、通知を足すなら Discord Webhook を Worker に足すのが一番早い
+
+## 🎨 金継ぎ診断の反映(2026-08-30)
+
+診断書 `SHINDAN-20260830.md`・証書 `compare.html` / `compare-shosai.html` が同梱。散らかり度は **46/51/50 → 2/2/2**、定番度 42/50 → 17/25、**3幅すべて卒業候補**(破れ0)。
+
+本体に入れた変更(上書きCSSではなくソース側を正規化):
+- トークン: `--color-mute` を `#5e5c64` へ(カード面でもAA準拠)、`--color-card-2` を罫線と同じ `#e2dbc7` へ、`--color-ink` を本文色と同値へ
+- 文字: **12px未満を全廃**(`text-[10px]`/`text-[11px]`/`text-xs` → `text-sm`)。役割内の段の割れも解消
+- 角丸: 5種 → 3種(`rounded`→`rounded-md`、`rounded-xl`→`rounded-lg`)
+- ヘッダーのガラス調(半透明+ぼかし)を廃止して不透明に
+- 2つ目のCTA(`variant="ghost"`)を文中リンクの見た目へ格下げ
+- 768pxで詰まっていた方針3カード・工程5列を `lg:` に送り、1024pxから横並びへ
+- `src/components/Paragraphs.tsx` を新設。長い本文を**2文以内かつ89字以内**で自動的に段落へ割る
+- ⚠️ **チェックボックス/ラジオは24px以上を保つこと**。16pxだとタップ標的の床(WCAG 2.5.8)を割って卒業判定が落ちる(実際に一度落とした)
+
+## 🈁 節ラベルの日本語化(2026-08-30)
+
+英字の大文字ラベル(SERVICES / CONTACT など)はAIの定番の型なので全廃。`Section.tsx` の `uppercase` も外した。
+商品名は**日本語を見出し・英語を副題**に入れ替え(Products・Pricing の両方)。英語で残しているのは
+`Character Art Partner`(肩書き)・`Inquiries in English are welcome.`(英語話者向け)・`P.7`等のページ番号だけ。
 
 ## ダッシュボードとの関係
 

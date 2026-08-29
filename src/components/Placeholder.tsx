@@ -34,7 +34,7 @@ export default function Placeholder({ slot, className = '', badge, priority = fa
           <svg
             aria-hidden="true"
             viewBox="0 0 24 24"
-            className="h-6 w-6 text-mute/50"
+            className="h-6 w-6 text-mute"
             fill="none"
             stroke="currentColor"
             strokeWidth="1.5"
@@ -43,14 +43,14 @@ export default function Placeholder({ slot, className = '', badge, priority = fa
             <circle cx="9" cy="9" r="2" />
             <path d="m21 15-3.5-3.5L9 20" />
           </svg>
-          <span className="text-xs font-medium text-mute">{slot.label}</span>
+          <span className="text-sm font-medium text-mute">{slot.label}</span>
           {slot.spec && (
-            <span className="text-[10px] text-mute/60">{slot.spec}</span>
+            <span className="text-sm text-mute">{slot.spec}</span>
           )}
         </div>
       )}
       {badge && (
-        <span className="absolute top-2 left-2 rounded bg-ink/85 px-2 py-0.5 text-[11px] font-bold tracking-wide text-gold-fill">
+        <span className="absolute top-2 left-2 rounded-md bg-ink px-2 py-0.5 text-sm font-bold tracking-wide text-gold-fill">
           {badge}
         </span>
       )}

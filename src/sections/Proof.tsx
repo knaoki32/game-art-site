@@ -19,14 +19,16 @@ export default function Proof() {
   return (
     <Section
       id="proof"
-      kicker="Proof — 109 Pages"
+      kicker="109ページの証明"
       title="109ページ。同じキャラクターを最後まで維持。"
       lead={
         <>
           {/* 和文は連結して書く。JSXの改行はスペース1個になり、日本語では字間が空いて見えるため */}
-          {'フルカラー漫画(全109ページ)を企画から作画まで一人で完結。' +
-            '序盤・中盤・終盤 — どのページを開いても、同じ顔・同じ体型・同じ塗りです。' +
-            'これは1枚のイラストでは証明できない、長期運用の耐久試験です。'}
+          {'フルカラー漫画(全109ページ)を企画から作画まで一人で完結。'}
+          <br />
+          {'序盤・中盤・終盤 — どのページを開いても、同じ顔・同じ体型・同じ塗りです。'}
+          <br />
+          {'これは1枚のイラストでは証明できない、長期運用の耐久試験です。'}
         </>
       }
       tinted
@@ -37,7 +39,7 @@ export default function Proof() {
         <Placeholder slot={images.proofPageMid} badge="P.39" className="aspect-[3/4]" />
         <Placeholder slot={images.proofPageLate} badge="P.100" className="aspect-[3/4]" />
       </div>
-      <p className="mt-3 text-center text-xs text-mute">
+      <p className="mt-3 text-center text-sm text-mute">
         90ページ以上離れた場面でも、同一人物であることが一目で分かります。
       </p>
 
@@ -60,13 +62,13 @@ export default function Proof() {
           {maintained.map((item) => (
             <li
               key={item}
-              className="rounded border border-line bg-card-2 px-3 py-1.5 text-sm"
+              className="rounded-md border border-line bg-card-2 px-3 py-1.5 text-sm"
             >
               {item}
             </li>
           ))}
         </ul>
-        <p className="mt-6 text-base font-bold leading-relaxed sm:text-lg">
+        <p className="mt-6 text-base font-bold leading-relaxed">
           この109ページを支えた工程で、
           <span className="text-gold">貴社キャラクターのDLC・継続制作に取り組みます。</span>
         </p>

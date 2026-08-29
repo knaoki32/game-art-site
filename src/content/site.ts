@@ -1,14 +1,16 @@
 /**
  * サイト全体で使う定数(リンク・名乗り)。
- * 問い合わせ先の URL はここだけ書き換えれば全 CTA に反映される。
+ *
+ * 問い合わせは 2026-08-30 に Googleフォームからサイト内フォームへ移した。
+ * 送信先は同じWorkerの POST /api/contact で、内容はKVにだけ保存される(外部送信なし)。
+ * 受信の確認は /admin/contacts?token=<ADMIN_TOKEN>。
  */
 
 export const site = {
   brand: 'なお',
   brandTagline: 'Character Art Partner',
-  /** 問い合わせ用 Google フォーム URL */
-  contactFormUrl:
-    'https://docs.google.com/forms/d/e/1FAIpQLSd3JzhylqDMy-xuoaWoAag5SvcHwfgzZWwx4URyABMcfQJQdw/viewform',
+  /** 問い合わせ先(サイト内フォームのアンカー)。全CTAはここを指す */
+  contactFormUrl: '#contact',
   /** X (Twitter) プロフィール */
   xUrl: 'https://x.com/knaoki23',
   xHandle: '@knaoki23',

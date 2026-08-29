@@ -15,16 +15,16 @@ export default function Comparison() {
   return (
     <Section
       id="difference"
-      kicker="Character Operations"
+      kicker="キャラクター運用という考え方"
       title="単発の画像制作ではなく、キャラクター運用を支援します。"
       lead="単発のイラスト制作と、キャラクター運用の支援では、提供する内容が異なります。当方がお引き受けするのは、キャラクターを軸にした継続的な制作です。"
     >
       {/* デスクトップ: 対比テーブル */}
-      <div className="hidden overflow-hidden rounded-xl border border-line md:block">
+      <div className="hidden overflow-hidden rounded-lg border border-line md:block">
         <table className="w-full border-collapse text-sm">
           <thead>
             <tr className="bg-card">
-              <th scope="col" className="w-40 p-4 text-left text-xs font-bold text-mute">
+              <th scope="col" className="w-40 p-4 text-left text-sm font-bold text-mute">
                 比較項目
               </th>
               <th scope="col" className="p-4 text-left font-bold text-mute">
@@ -32,7 +32,7 @@ export default function Comparison() {
               </th>
               <th
                 scope="col"
-                className="border-l-2 border-gold bg-card-2 p-4 text-left font-black text-gold"
+                className="border-l-2 border-gold bg-card-2 p-4 text-left font-black"
               >
                 キャラクター運用
               </th>
@@ -41,7 +41,7 @@ export default function Comparison() {
           <tbody>
             {rows.map((row) => (
               <tr key={row.label} className="border-t border-line">
-                <th scope="row" className="p-4 text-left text-xs font-bold text-mute">
+                <th scope="row" className="p-4 text-left text-sm font-bold text-mute">
                   {row.label}
                 </th>
                 <td className="p-4 text-mute">{row.typical}</td>
@@ -58,14 +58,14 @@ export default function Comparison() {
       <div className="space-y-3 md:hidden">
         {rows.map((row) => (
           <div key={row.label} className="rounded-lg border border-line bg-card p-4">
-            <h3 className="text-xs font-bold text-mute">{row.label}</h3>
+            <h3 className="text-sm font-bold text-mute">{row.label}</h3>
             <div className="mt-2 grid grid-cols-2 gap-3 text-sm">
               <div>
-                <p className="text-[10px] text-mute/70">単発の画像制作</p>
+                <p className="text-sm text-mute">単発の画像制作</p>
                 <p className="mt-0.5 text-mute">{row.typical}</p>
               </div>
               <div className="border-l-2 border-gold pl-3">
-                <p className="text-[10px] text-gold">キャラクター運用</p>
+                <p className="text-sm text-gold">キャラクター運用</p>
                 <p className="mt-0.5 font-bold">{row.mine}</p>
               </div>
             </div>

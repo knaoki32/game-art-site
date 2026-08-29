@@ -1,4 +1,5 @@
 import Section from '../components/Section'
+import Paragraphs from '../components/Paragraphs'
 import CtaButton from '../components/CtaButton'
 
 interface Product {
@@ -56,7 +57,7 @@ export default function Products() {
   return (
     <Section
       id="products"
-      kicker="Services"
+      kicker="商品"
       title="商品は3つ。キャラクターの展開と運用に絞っています。"
       lead="いずれも「検証サンプルの提出 → 絵柄の合意 → 本制作」の順で進みます。画像・漫画・動画を横断でき、日本語・英語どちらでも対応します。"
     >
@@ -64,21 +65,22 @@ export default function Products() {
         {products.map((p) => (
           <article
             key={p.name}
-            className={`flex flex-col rounded-xl border p-6 sm:p-7 ${
+            className={`flex flex-col rounded-lg border p-6 sm:p-7 ${
               p.featured
                 ? 'border-gold bg-card shadow-[0_0_40px_rgba(201,162,74,0.08)] lg:-my-3 lg:py-10'
                 : 'border-line bg-card/60'
             }`}
           >
             {p.featured && (
-              <p className="mb-3 inline-flex w-fit rounded bg-gold-fill px-2 py-0.5 text-[11px] font-bold text-ink">
+              <p className="mb-3 inline-flex w-fit rounded-md bg-gold-fill px-2 py-0.5 text-sm font-bold text-ink">
                 主力商品
               </p>
             )}
-            <h3 className="text-lg font-black leading-snug">{p.name}</h3>
-            <p className="mt-1 text-xs text-mute">{p.nameJa}</p>
-            <p className="mt-4 text-sm leading-relaxed text-mute">{p.desc}</p>
-            <h4 className="mt-5 text-xs font-bold tracking-wide text-mute">
+            {/* 日本語のページなので見出しは日本語。英語の商品名は副題に置く */}
+            <h3 className="text-base font-black leading-snug">{p.nameJa}</h3>
+            <p className="mt-1 text-sm text-mute">{p.name}</p>
+            <Paragraphs text={p.desc} className="mt-4 text-sm leading-relaxed text-mute" />
+            <h4 className="mt-5 text-sm font-bold tracking-wide text-mute">
               含まれるもの
             </h4>
             <ul className="mt-2 space-y-1.5">
@@ -92,8 +94,8 @@ export default function Products() {
               ))}
             </ul>
             <div className="mt-5 rounded-md bg-card-2 p-3">
-              <h4 className="text-xs font-bold text-mute">こんなチームに</h4>
-              <p className="mt-1 text-xs leading-relaxed text-mute">{p.forWho}</p>
+              <h4 className="text-sm font-bold text-mute">こんなチームに</h4>
+              <p className="mt-1 text-sm leading-relaxed text-mute">{p.forWho}</p>
             </div>
             {p.featured && (
               <CtaButton href="#contact" className="mt-6">

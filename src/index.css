@@ -9,14 +9,14 @@
        --color-gold-soft … 塗りボタンのホバー(明るく変化) */
   --color-paper: #f7f3ea; /* 背景(温かみのあるクリーム) */
   --color-card: #ffffff; /* カード面 */
-  --color-card-2: #efe7d3; /* カード面(濃) — タグ・強調セルなど */
+  --color-card-2: #e2dbc7; /* カード面(濃) — タグ・強調セルなど。罫線と同じベージュ族 */
   --color-line: #e2dbc7; /* 罫線 */
   --color-body: #232228; /* 本文(濃インク) */
-  --color-mute: #6e6c74; /* 補助テキスト */
+  --color-mute: #5e5c64; /* 補助テキスト。カード面(濃)の上でもAA(4.5)を満たす明度 */
   --color-gold: #7f611f; /* テキスト・枠線用(白地でAA準拠) */
   --color-gold-fill: #c9a24a; /* ボタン塗り・暗色チップ文字用 */
   --color-gold-soft: #e3c37a; /* 塗りボタンのホバー */
-  --color-ink: #111217; /* 暗色アクセント(ボタン文字・暗色チップの地) */
+  --color-ink: #232228; /* 暗色アクセント(ボタン文字・暗色チップの地)。本文色と同値 */
 
   --font-sans: "Noto Sans JP", system-ui, -apple-system, "Segoe UI", sans-serif;
 }

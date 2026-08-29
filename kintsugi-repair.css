@@ -1,0 +1,66 @@
+/* ⚠️ このファイルは金継ぎ診断の「修理デモ」の記録です(2026-08-30)。
+   中身は 2026-08-30 に本体のソース(src/index.css と各コンポーネント)へ
+   正規化して取り込み済みなので、**もう読み込まないでください**。
+   重ねて当てると二重適用になります。残しているのは、診断書・証書と対で
+   「何をどう直したか」を後から追えるようにするためです。 */
+
+/* ══ 金継ぎ追補スタイル kintsugi-repair.css（2026-08-29・修理デモ用）══
+   naoshi自動下書き + 手仕事。<head> の末尾に貼るだけで効く(元の規則を後から上書き)。
+   本体のReactソースは無改変。 */
+
+/* ── 破れ: 低コントラスト ──
+   補助テキスト #6E6C74 は白地では床を越えるが、カード地(#EFE7D3系)で比4.2と割れる。
+   金に振らず無彩色のまま #5E5C64 へ(白地6.5・カード地5.3・統合後の地4.7で全て床4.5超)。
+   /60・/70 の透かしも実体は同じ灰なので同色に(フッターの©表記 比2.29→合格)。 */
+.text-mute { color: #5E5C64; }
+.text-mute\/60 { color: #5E5C64; }
+.text-mute\/70 { color: #5E5C64; }
+/* 比較表の見出し(金文字×カード地)は、地の統合(下)で金#7F611Fが床を割る(比4.18)。
+   派生金を作ると色ズレが1件増えるため、文字は本文色に。列の強調は金の左罫線と太字が担う */
+.bg-card-2.text-gold, .bg-card-2 .text-gold { color: #232228; }
+
+/* ── 破れ: 極小文字(10px/11px) + 文字段の整理 ──
+   役割ごとの段: h3系{14,16} 本文{14,16,24} ボタン{14,18} その他{12,14,16} */
+.text-xs { font-size: 14px; }               /* 12px群(キッカー・注記・ナビ)→14 */
+p.text-\[11px\], li.text-\[11px\] { font-size: 14px; }  /* キャプション・チップ 11→14(本文役割) */
+span.text-\[11px\] { font-size: 12px; }     /* 画像上のバッジ 11→12(その他役割) */
+header span.text-\[11px\] { font-size: 14px; } /* ブランド肩書きだけボタン役割→14 */
+p.text-\[10px\] { font-size: 14px; }        /* モバイル比較カードの小ラベル 10→14 */
+h3.text-lg, p.text-lg { font-size: 16px; }  /* 商品名18→16(h3を2段に)。ヘッダーの屋号18pxは据え置き */
+@media (width >= 40rem) {
+  .sm\:text-lg { font-size: 16px; }         /* 本文の18px(sm指定)→16 */
+}
+
+/* ── 乱れ: 角丸5種→3種 {6,8,999} ── */
+.rounded { border-radius: 6px; }      /* バッジ・タグ 4→6 */
+.rounded-xl { border-radius: 8px; }   /* 商品・料金カード 12→8(カード面はrounded-lgと同じ8に) */
+
+/* ── 乱れ: 似て非なる色の統合 ── */
+.bg-card-2 { background-color: #E2DBC7; }             /* カード地(濃)→罫線と同じベージュ族へ */
+.bg-paper\/90 { background-color: #F7F3EA; }          /* ヘッダーを不透明の紙色に */
+.backdrop-blur { backdrop-filter: none; -webkit-backdrop-filter: none; } /* ガラス調をやめる(型紙対策も兼ねる) */
+.text-ink { color: #232228; }                          /* 暗色2種を本文色に統一 */
+.bg-ink { background-color: #232228; }
+.bg-ink\/85 { background-color: #232228; }             /* 画像上のバッジ地は不透明に(読みの安定も兼ねる) */
+
+/* ── 型紙: dual-cta の格下げ(CSSのみ・DOMと行き先は不変) ──
+   2つ目のボタン(枠線ゴースト)を文中リンクの見た目に */
+a.inline-flex.border-line {
+  border-color: transparent;
+  background: transparent;
+  padding: 0.25rem 0.125rem;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  color: #5E5C64;
+}
+a.inline-flex.border-line:hover { color: #7F611F; }
+
+/* ── レスポンシブ(768〜1023px): ナビ折れ対策 + 方針カードの詰まり ── */
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  header span.text-\[11px\] { display: none; }  /* 肩書きを畳んでナビの幅を確保 */
+  header nav.md\:flex { gap: 1rem; }
+  .md\:grid-cols-3 { grid-template-columns: 1fr; } /* 方針3カードを1列に(12字/行の詰まり解消) */
+  .md\:grid-cols-5 { grid-template-columns: 1fr; } /* 工程5列も1列に(7字/行の詰まり解消) */
+  .md\:rotate-90 { transform: none; }              /* 縦積みでは工程の矢印を↓のまま */
+  .md\:h-6 { height: auto; }
+}

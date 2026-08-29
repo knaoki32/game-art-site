@@ -1,4 +1,5 @@
 import Section from '../components/Section'
+import Paragraphs from '../components/Paragraphs'
 
 const policies = [
   {
@@ -46,21 +47,21 @@ export default function Policy() {
   return (
     <Section
       id="policy"
-      kicker="Policy & FAQ"
+      kicker="方針・よくある質問"
       title="安心して発注いただくために。"
       lead="権利・秘密保持・AI利用について、契約前に確認されることを先にすべて開示します。"
       tinted
     >
-      <div className="grid gap-5 md:grid-cols-3">
+      <div className="grid gap-5 lg:grid-cols-3">
         {policies.map((p) => (
           <div key={p.title} className="rounded-lg border border-line bg-card p-6">
             <h3 className="text-sm font-black">{p.title}</h3>
-            <p className="mt-3 text-sm leading-relaxed text-mute">{p.body}</p>
+            <Paragraphs text={p.body} className="mt-3 text-sm leading-relaxed text-mute" />
           </div>
         ))}
       </div>
 
-      <h3 className="mt-12 text-lg font-black">よくある質問</h3>
+      <h3 className="mt-12 text-base font-black">よくある質問</h3>
       <div className="mt-4 divide-y divide-line rounded-lg border border-line bg-card">
         {faqs.map((f) => (
           <details key={f.q} className="group px-6 py-4">

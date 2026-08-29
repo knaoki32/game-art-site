@@ -16,8 +16,9 @@ export default function Hero() {
         <div className="grid items-center gap-10 lg:grid-cols-[5fr_7fr] lg:gap-14">
           {/* 左: 最小限のコピー */}
           <div>
-            <p className="text-xs font-bold tracking-[0.25em] text-gold uppercase">
-              Character Continuity & DLC Kit
+            {/* 宛先を頭に置く。「何が」だけでなく「誰向けか」を最初の画面で言う */}
+            <p className="text-sm font-bold tracking-[0.2em] text-gold">
+              ゲーム会社向け・キャラクター一貫性・DLC展開キット
             </p>
             <h1 className="mt-4 text-3xl font-black leading-tight sm:text-4xl md:text-[2.75rem]">
               同じキャラクターを、
@@ -41,7 +42,7 @@ export default function Hero() {
               {trustChips.map((chip) => (
                 <li
                   key={chip}
-                  className="rounded-full border border-line px-3 py-1 text-[11px] text-mute"
+                  className="rounded-full border border-line px-3 py-1 text-sm text-mute"
                 >
                   {chip}
                 </li>
@@ -70,7 +71,7 @@ export default function Hero() {
                 className="aspect-video sm:aspect-[4/3]"
               />
             </div>
-            <p className="mt-3 text-center text-xs text-mute">
+            <p className="mt-3 text-center text-sm text-mute">
               — すべて<span className="font-bold text-body">同じ1体のキャラクター</span>
               から展開 —
             </p>

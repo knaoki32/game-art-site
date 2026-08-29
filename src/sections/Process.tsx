@@ -31,26 +31,34 @@ export default function Process() {
   return (
     <Section
       id="process"
-      kicker="Reproducible Workflow"
+      kicker="再現可能な制作工程"
       title="「なぜ崩れないのか」を、工程で説明します。"
-      lead="生成して終わり、ではありません。基準画像とプロンプトを資産として管理する、再現可能な制作工程です。ヒアリング(NDA締結可)で世界観と既存素材を確認したうえで、次の5工程で進みます。"
+      lead={
+        <>
+          {'生成して終わり、ではありません。'}
+          <br />
+          {'基準画像とプロンプトを資産として管理する、再現可能な制作工程です。'}
+          <br />
+          {'ヒアリング(NDA締結可)で世界観と既存素材を確認したうえで、次の5工程で進みます。'}
+        </>
+      }
       tinted
     >
       {/* 工程フロー図 */}
-      <ol className="grid gap-3 md:grid-cols-5 md:gap-0" aria-label="制作工程の5ステップ">
+      <ol className="grid gap-3 lg:grid-cols-5 lg:gap-0" aria-label="制作工程の5ステップ">
         {steps.map((step, i) => (
-          <li key={step.title} className="flex items-stretch md:flex-col">
+          <li key={step.title} className="flex items-stretch lg:flex-col">
             <div className="flex flex-1 flex-col rounded-lg border border-line bg-card p-5">
-              <span className="text-xs font-black tracking-widest text-gold">
+              <span className="text-sm font-black tracking-widest text-gold">
                 {String(i + 1).padStart(2, '0')}
               </span>
               <h3 className="mt-1.5 text-base font-black">{step.title}</h3>
-              <p className="mt-2 text-xs leading-relaxed text-mute">{step.desc}</p>
+              <p className="mt-2 text-sm leading-relaxed text-mute">{step.desc}</p>
             </div>
             {i < steps.length - 1 && (
               <span
                 aria-hidden="true"
-                className="flex items-center justify-center px-1 text-gold md:h-6 md:rotate-90"
+                className="flex items-center justify-center px-1 text-gold lg:h-6 lg:rotate-90"
               >
                 ↓
               </span>
@@ -65,7 +73,7 @@ export default function Process() {
           1枚の基準画像から、すべての媒体へ
         </h3>
         <div className="mt-4 flex flex-col items-center gap-2 sm:flex-row sm:justify-center sm:gap-4">
-          <span className="rounded border border-gold-fill/50 bg-ink px-4 py-2 text-sm font-bold text-gold-fill">
+          <span className="rounded-md border border-gold-fill/50 bg-ink px-4 py-2 text-sm font-bold text-gold-fill">
             基準画像
           </span>
           <span aria-hidden="true" className="text-mute">
@@ -76,7 +84,7 @@ export default function Process() {
               (m) => (
                 <span
                   key={m}
-                  className="rounded border border-line bg-card-2 px-3 py-2 text-xs"
+                  className="rounded-md border border-line bg-card-2 px-3 py-2 text-sm"
                 >
                   {m}
                 </span>
@@ -84,7 +92,7 @@ export default function Process() {
             )}
           </div>
         </div>
-        <p className="mt-4 text-center text-xs text-mute">
+        <p className="mt-4 text-center text-sm text-mute">
           画像も動画も同じ基準画像を参照して制作するため、媒体をまたいでも同じキャラクターのまま展開しやすい工程です。
         </p>
       </div>

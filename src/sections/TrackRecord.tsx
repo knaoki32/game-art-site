@@ -32,7 +32,7 @@ export default function TrackRecord() {
   return (
     <Section
       id="record"
-      kicker="Track Record"
+      kicker="これまでの実績"
       title="単発ではなく、続けてきた実績。"
       lead="規模の数字より、継続して任され続けていることを見てください。"
       tinted
@@ -42,7 +42,7 @@ export default function TrackRecord() {
           <div key={r.title} className="rounded-lg border border-line bg-card p-5">
             <p className="text-2xl font-black text-gold">{r.stat}</p>
             <h3 className="mt-2 text-sm font-bold leading-snug">{r.title}</h3>
-            <p className="mt-2 text-xs leading-relaxed text-mute">{r.desc}</p>
+            <p className="mt-2 text-sm leading-relaxed text-mute">{r.desc}</p>
           </div>
         ))}
       </div>

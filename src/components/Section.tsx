@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 
 interface Props {
   id: string
-  /** 英語キッカー(小さく金色で表示) */
+  /** 節の名前(小さく金色で表示)。日本語で書く — 英字の大文字ラベルはAIの定番の型 */
   kicker: string
   /** 日本語見出し */
   title: string
@@ -20,7 +20,8 @@ export default function Section({ id, kicker, title, lead, children, tinted = fa
       className={`scroll-mt-16 px-5 py-20 sm:px-8 md:py-28 ${tinted ? 'bg-card/40' : ''}`}
     >
       <div className="mx-auto w-full max-w-6xl">
-        <p className="text-xs font-bold tracking-[0.25em] text-gold uppercase">{kicker}</p>
+        {/* 和文なので uppercase は付けない(効かないうえ、英字ラベルの型を招く) */}
+        <p className="text-sm font-bold tracking-[0.2em] text-gold">{kicker}</p>
         <h2 className="mt-3 text-2xl font-black leading-snug sm:text-3xl md:text-4xl">
           {title}
         </h2>

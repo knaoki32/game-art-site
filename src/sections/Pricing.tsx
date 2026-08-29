@@ -3,6 +3,7 @@ import Section from '../components/Section'
 const plans = [
   {
     name: 'Character Continuity & DLC Kit',
+    nameJa: 'キャラクター一貫性・DLC展開キット',
     featured: true,
     scope: '衣装3種 × 立ち絵・差分一式+ストア用書き出し、基準画像・制作条件の構築を含む',
     price: '22万円〜',
@@ -10,12 +11,14 @@ const plans = [
   },
   {
     name: 'Steam Launch Visual Kit',
+    nameJa: 'Steamローンチ・ビジュアルキット',
     scope: 'カプセル一式(3規格)+OGP・SNS告知画像+PV用カットイン',
     price: '30万円〜',
     priceNote: '参考価格。素材の範囲により変動します',
   },
   {
     name: 'LiveOps Community Creative Pack',
+    nameJa: 'LiveOps・コミュニティ素材パック(月次)',
     scope: '月次の点数レンジ制。イベント絵・SNS素材・告知素材を継続供給',
     price: '月額24万円〜',
     priceNote: '参考価格。月間の点数レンジにより変動します',
@@ -37,7 +40,7 @@ export default function Pricing() {
   return (
     <Section
       id="pricing"
-      kicker="Pricing"
+      kicker="料金の目安"
       title="料金の目安。キット単位の参考価格です。"
       lead="以下は参考価格です。点数・規模・運用期間によって変動するため、正式なお見積りは内容を伺ったうえでご提案します。お見積り・ご相談は無料です。"
     >
@@ -45,16 +48,18 @@ export default function Pricing() {
         {plans.map((p) => (
           <div
             key={p.name}
-            className={`rounded-xl border p-6 sm:p-7 ${
+            className={`rounded-lg border p-6 sm:p-7 ${
               p.featured ? 'border-gold bg-card' : 'border-line bg-card/60'
             }`}
           >
-            <h3 className="text-base font-black leading-snug">{p.name}</h3>
+            {/* 日本語のページなので見出しは日本語。英語の商品名は副題に置く */}
+            <h3 className="text-base font-black leading-snug">{p.nameJa}</h3>
+            <p className="mt-1 text-sm text-mute">{p.name}</p>
             <p className="mt-3 text-sm leading-relaxed text-mute">{p.scope}</p>
             <p className={`mt-5 text-2xl font-black ${p.featured ? 'text-gold' : ''}`}>
               {p.price}
             </p>
-            <p className="mt-1 text-xs text-mute">{p.priceNote}</p>
+            <p className="mt-1 text-sm text-mute">{p.priceNote}</p>
           </div>
         ))}
       </div>
